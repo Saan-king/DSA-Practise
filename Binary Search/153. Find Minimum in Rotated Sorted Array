@@ -1,0 +1,24 @@
+Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+You must write an algorithm that runs in O(log n) time.
+
+Example:
+Input: nums = [3,4,5,1,2]
+Output: 1
+Explanation: The original array was [1,2,3,4,5] rotated 3 times.
+
+class Solution {
+    public int findMin(int[] nums) {
+        int lo=0,hi=nums.length-1;
+        while(lo<hi)
+        {
+            int mid=lo+(hi-lo)/2;
+            if(nums[mid]<nums[hi]) //eliminate right half, we know minimum ele not present in right half
+                hi=mid;
+            else
+                lo=mid+1;
+        }
+        return nums[hi]; //finally low and high will be on same point so either hi or low will give the answer.
+        
+        //Time Complexity: O(NLogN)
+    }
+}

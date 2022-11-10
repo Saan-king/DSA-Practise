@@ -27,4 +27,4 @@ class Solution {
 }
 
 //Worst caseL O(N) -->when array is  arr[1,1,1,1,1,1]
-//best case ->(O(nlogn))
+//Avg case ->(O(nlogn))

@@ -1,0 +1,58 @@
+Given an unsorted integer array nums, return the smallest missing positive integer.
+You must implement an algorithm that runs in O(n) time and uses constant extra space.
+
+Example 1:
+
+Input: nums = [1,2,0]
+Output: 3
+Explanation: The numbers in the range [1,2] are all in the array.
+
+Example 2:
+
+Input: nums = [3,4,-1,1]
+Output: 2
+Explanation: 1 is in the array but 2 is missing.
+
+Example 3:
+
+Input: nums = [7,8,9,11,12]
+Output: 1
+Explanation: The smallest positive integer 1 is missing.
+----------------------------------------
+
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        boolean containsOne=false;
+        //iterate through the array, check if one is present
+        for(int x:nums){
+            if(x==1){
+                containsOne=true;
+                break;
+        }
+    }
+        //if one not present in the array return 1 because it is the first +ve integer.
+        if(!containsOne) return 1;
+
+        int n=nums.length;
+
+        if(n==1) return 2;
+
+        for(int i=0;i<n;++i)
+            if(nums[i]<=0 || nums[i]>n) 
+                nums[i]=1;  //make 1 for the numbers less than 0 and greater than size of the array
+
+        //Make all the elements in the array as -ve
+        for(int i=0;i<n;++i)
+        {
+            int x=Math.abs(nums[i]);
+            if(nums[x-1]>0) 
+                nums[x-1]*=-1;
+        }
+        //return the index of first element greater than 0
+        for(int i=0;i<n;++i)
+            if(nums[i]>0) return i+1;
+
+        return n+1;
+
+    }
+}

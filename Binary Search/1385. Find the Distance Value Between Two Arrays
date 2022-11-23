@@ -28,7 +28,7 @@ For arr1[2]=8 we have:
 Java:
 
 //Brute Force
-class Solution {
+class Solution { 
     public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
 
         int distance=0;

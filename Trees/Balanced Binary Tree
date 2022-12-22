@@ -1,0 +1,46 @@
+Given a binary tree, determine if it is height-balanced
+
+Input: root = [3,9,20,null,null,15,7]
+Output: true
+
+Input: root = [1,2,2,3,3,null,null,4,4]
+Output: false
+
+----------------------------------------------
+
+Java Solution:
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root==null)
+            return true;
+        int h_left=height(root.left);
+        int h_right=height(root.right);
+       boolean islb=isBalanced(root.left);
+       boolean isrb=isBalanced(root.right);
+        if(!islb || !isrb)
+            return false;
+        return Math.abs(h_left-h_right)<=1;
+    }
+    public int height(TreeNode root){
+        if(root==null) return 0;
+        return Math.max(height(root.left),height(root.right))+1;
+    }
+}
+
+Time Complexity: O(N^2)

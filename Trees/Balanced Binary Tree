@@ -43,7 +43,7 @@ class Solution {
     }
 }
 
-Time Complexity: O(N^2)
+Time Complexity: O(N^2) - O(N) for traversal, O(N) - for finding height of each subtree , so N*N
 
 
 class Solution {

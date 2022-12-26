@@ -1,0 +1,57 @@
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, 
+typically using all the original letters exactly once.
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+Input: strs = [""]
+Output: [[""]]
+
+------------------------------
+
+Java Solution:
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        //check if the given string is null
+       if(strs==null || strs.length==0) return new ArrayList<>();
+
+       Map<String,List<String>> map=new HashMap<>();
+
+       for(String s: strs){
+           char[] arr=s.toCharArray();
+        Arrays.sort(arr);
+        String key=String.valueOf(arr);
+        if(!map.containsKey(key)) map.put(key,new ArrayList<>());
+        map.get(key).add(s);
+       }
+      return new ArrayList<>(map.values());
+    }
+}
+
+Another Solution:
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        //check if the given string is null
+        if(strs==null || strs.length==0) 
+            return new ArrayList<>();
+
+        Map<String,List<String>> map=new HashMap<>();
+
+        for(String s:strs){
+            char []arr=new char[26];
+            for(char c:s.toCharArray()) 
+                arr[c-'a']++;
+            //calculate the value of each string
+            String key=String.valueOf(arr);
+            //check if the value of the string matches with the map already present,if not create new arraylist and add the key
+            if(!map.containsKey(key)) 
+                    map.put(key,new ArrayList<>());
+            map.get(key).add(s); //else add the key to already matching map
+        }
+        return new ArrayList<>(map.values());
+    }
+}
